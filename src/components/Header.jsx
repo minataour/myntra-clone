@@ -1,17 +1,21 @@
 import { IoMdPerson } from "react-icons/io";
 import { FaGrinHearts, FaShoppingBag } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const bag = useSelector(store => store.bag)
+
   return (
     <header>
       <div className="logo_container">
-        <a href="#">
+        <Link to="/">
           <img
             className="myntra_home"
             src="images/myntra_logo.webp"
             alt="Myntra Home"
           />
-        </a>
+        </Link>
       </div>
       <nav className="nav_bar">
         <a href="#">Men</a>
@@ -37,15 +41,15 @@ const Header = () => {
         </div>
 
         <div className="action_container">
-        <FaGrinHearts />
+          <FaGrinHearts />
           <span className="action_name">Wishlist</span>
         </div>
 
-        <a className="action_container" href="pages/bag.html">
-        <FaShoppingBag />
+        <Link className="action_container" to="/bag">
+          <FaShoppingBag />
           <span className="action_name">Bag</span>
-          <span className="bag-item-count">0</span>
-        </a>
+          <span className="bag-item-count">{bag.length}</span>
+        </Link>
       </div>
     </header>
   );
